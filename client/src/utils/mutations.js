@@ -6,7 +6,7 @@ export const LOGIN_USER = gql`
       token
       user {
         _id
-        username
+        email
       }
     }
   }
@@ -18,21 +18,40 @@ export const ADD_USER = gql`
       token
       user {
         _id
-        username
+        email
       }
     }
   }
 `;
 
 export const ADD_CARD = gql`
-  mutation addCard($cardText: String!) {
-    addCard(cardText: $cardText) {
+  mutation addCard($email: String!, $cardSubject: String!, $cardTitle: String!, $cardBody: String!) {
+    addCard(email: $email, cardSubject: $cardSubject, cardTitle: $cardTitle, cardBody: $cardBody) {
       _id
       cardTitle
       cardBody
       cardSubject
       createdAt
-      username
+      email
+    }
+  }
+`;
+
+export const EDIT_CARD = gql`
+  mutation editCard($id: String!, $email: String!, $cardSubject: String!, $cardTitle: String!, $cardBody: String!) {
+    editCard(_id: $_id, cardTitle: $cardTitle, cardSubject: $cardSubject, cardBody: $cardBody) {
+      _id
+      cardTitle
+      cardSubject
+      cardBody
+    }
+  }
+`;
+
+export const DELETE_CARD = gql`
+  mutation deleteCard($_id: String!) {
+    deleteCard(_id: $_id) {
+      _id
     }
   }
 `;

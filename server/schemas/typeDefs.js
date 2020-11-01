@@ -1,15 +1,7 @@
 // import the gql tagged template function
 const { gql } = require('apollo-server-express');
 
-// create our typeDefs
-//this was the starter typeDefs to test that it was working before adding specific typeDefs for the app
-//const typeDefs = gql`
-//   type Query {
-//     helloWorld: String
-//   }
-// `;
-
-//the square brackets used around [Card] in the thoughts query below indicates an array
+//the square brackets used around [Card] in the user query below indicates an array
 
 const typeDefs = gql`
 
@@ -32,24 +24,25 @@ const typeDefs = gql`
         cardTitle: String
         cardBody: String
         createdAt: String
-        username: String
+        email: String
     }
 
     type Query {
         me: User
         users: [User]
-        user(username: String!): User
-        cards(username: String): [Card]
+        user(email: String!): User
+        cards(email: String, cardSubject: String): [Card]
         card(_id: ID!): Card
     }
 
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
-        addCard(cardSubject: String!, cardTitle: String!, cardBody: String!): Card
+        addCard(email: String!, cardSubject: String!, cardTitle: String!, cardBody: String!): Card
+        editCard(_id: String!, cardTitle: String!,cardSubject: String!,cardBody: String!): Card
+        deleteCard(_id: String!): Card
     }
 
 `;
 
-// export the typeDefs
 module.exports = typeDefs;

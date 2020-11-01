@@ -3,18 +3,30 @@ const moment = require('moment');
 
 const cardSchema = new Schema(
   {
-    cardText: {
+    cardTitle: {
       type: String,
-      //required: 'You need to leave a thought!',
+      required: 'Title is required.',
       minlength: 1,
-      maxlength: 280
+      maxlength: 50
+    },
+    cardBody: {
+      type: String,
+      required: 'Body is required.',
+      minlength: 1,
+      maxlength: 500
+    },
+    cardSubject: {
+      type: String,
+      required: 'Subject is required.',
+      minlength: 1,
+      maxlength: 100
     },
     createdAt: {
       type: Date,
       default: Date.now,
       get: timestamp => moment(timestamp).format('MMM Do, YYYY [at] hh:mm a')
     },
-    username: {
+    email: {
       type: String,
       required: true
     },

@@ -1,10 +1,10 @@
 :root {
-  --primary: #497573;
-  --secondary: #99f7f2;
-  --tertiary: #b2c2c1;
-  --quatrinary: #cadbda;
-  --light: #e1f5f4;
-  --dark: #6c7575;
+  --primary: red; /* not used? */
+  --secondary: #598392; /* header/footer background and card date color */
+  --tertiary: #aec3b0; /* not used? */
+  --quatrinary: #124559; /* not used? */
+  --light: #eff6e0; /* card background and card header title color */
+  --dark: #01161e; /* app title and card header background */
   --error: rgb(228, 46, 1);
   --border-radius: 0.3rem;
   --spacing-one: calc(1rem * 0.25);
@@ -30,7 +30,7 @@ body {
   font-weight: 400;
   line-height: 1.5;
   font-size: 20px;
-  color: var(--dark);
+  color: var(--light);
   background-color: #f3fffee1;
 }
 
@@ -52,10 +52,12 @@ h1 {
 
 h2 {
   font-size: 2rem;
+  color: var(--quatrinary);
 }
 
 h3 {
   font-size: 1.75rem;
+  color: var(--quatrinary);
 }
 
 h4 {
@@ -100,6 +102,15 @@ nav a:hover {
   background-color: var(--dark);
 }
 
+.noMatch {
+  color: var(--dark);
+}
+
+.pageMsg {
+  color: var(--dark);
+  text-align: center;
+}
+
 .page-title {
   text-align: center;
   width: 100%;
@@ -136,16 +147,21 @@ nav a:hover {
   margin: 0 0 20px 0;
   border: 3px solid var(--dark);
   border-radius: var(--border-radius);
-  background-color: var(--light);
+  background-color: var(--tertiary);
   color: var(--dark);
 }
 
 .card-header {
-  color: var(--secondary);
+  color: var(--light);
   margin: 0;
   background-color: var(--dark);
   padding: 0.625rem;
   border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
+}
+
+.card-date {
+  color: var(--tertiary);
+  float: right;
 }
 
 .card-body {
@@ -172,6 +188,10 @@ nav a:hover {
   font-size: 1.2rem;
   border: 2px solid var(--dark);
   border-radius: var(--border-radius);
+}
+
+.char-counter {
+  color: var(--secondary);
 }
 
 [type='radio']:checked,

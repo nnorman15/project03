@@ -19,7 +19,9 @@ const Header = () => {
         <nav className="text-center">
           {Auth.loggedIn() ? (
             <>
-              <Link to="/profile">Me</Link>
+              {/* need to swap out new when user is on /card-form.  if not on /card-from show 'List' */}
+              <Link to="/">My Cards</Link>
+              <Link to="/card-form">New</Link>
               <a href="/" onClick={logout}>
                 Logout
               </a>

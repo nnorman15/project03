@@ -1,32 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Auth from '../../utils/auth';
 
-const CardList = ({ cards, title }) => {
-    if (!cards.length) {
-        return <h3>No Cards Yet</h3>;
+const CardList = ({ cards, cardSubjectFilter, title }) => {
+    const loggedIn = Auth.loggedIn();
+    if (loggedIn){
+        if (!cardSubjectFilter || cardSubjectFilter === "selectSubject"){
+            return <div className="pageMsg">Please select a subject for a list of cards.</div>;
+        }
+        else {
+            if (!cards.length) {
+                return <div className="pageMsg">There are no cards assigned to the chosen subject.</div>;
+            }
+        }
     }
-
+    else {
+        return <div className="pageMsg">Please login or signup!</div>;
+    }
+    
     return (
         <div>
             <h3>{title}</h3>
             {cards && cards.map(card => (
                 <div key={card._id} className="card mb-3">
                     <p className="card-header">
-                        <Link
-                        to={`/profile/${card.username}`}
-                        style={{ fontWeight: 700 }}
-                        className="text-light"
-                        >
-                            {card.username}
-                        </Link>
-                        {' '} card on {card.createdAt}
+                        {card.cardTitle} <span className="card-date">{card.createdAt}</span>
                     </p>
                     <div className="card-body">
-                        <Link to={`/card/${card._id}`}>
-                            <p>{card.cardTitle}</p>
-                            <p className="mb-0">
-                                {/* this is where the reaction count used to go */}
-                            </p>
+                        <Link to={`/card-form/${card._id}`}>
+                            <p>{card.cardBody}</p>
                         </Link>
                     </div>
                 </div>
