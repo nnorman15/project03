@@ -7,9 +7,9 @@ This project demonstrates the use of the following packages :
 
 ## Project Screenshot
 
-![Project Screenshot](https://github.com/nnorman15/project03/tree/master/Project_Screenshot.png)
+![Project Screenshot](https://github.com/nnorman15/project03/blob/main/Project_Screenshot.png)
 
 ## Links
 
-<a href="https://nnorman15.github.io/project03/" target="_blank">Deployed URL</a>
+<a href="https://lit-falls-57665.herokuapp.com/" target="_blank">Deployed URL</a>
 
