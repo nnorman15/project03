@@ -5,43 +5,43 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-      me: async (parent, args, context) => {
-          if (context.user) {
-            const userData = await User.findOne({ _id: context.user._id })
-              .select('-__v -password')
-              .populate('cards')
-        
-            return userData;
-          }
-        
-          throw new AuthenticationError('Not logged in');
-      },
+    me: async (parent, args, context) => {
+        if (context.user) {
+          const userData = await User.findOne({ _id: context.user._id })
+            .select('-__v -password')
+            .populate('cards')
+      
+          return userData;
+        }
+      
+        throw new AuthenticationError('Not logged in');
+    },
 
-      //get cards - by email AND subject
-      cards: async (parent, { email, cardSubject }) => {
-          const params = {email, cardSubject};
-          return Card.find(params).sort({ createdAt: -1 });
-          //return Card.find(params).sort({ cardTitle });
-      },
- 
-      //get card by _id
-      card: async (parent, { _id }) => {
-          return Card.findOne({ _id });
-      },
+    //get cards - by email AND subject
+    cards: async (parent, { email, cardSubject }) => {
+        const params = {email, cardSubject};
+        //return Card.find(params).sort({ createdAt: -1 });
+        return Card.find(params).sort({ cardTitle: 1 });
+    },
 
-      // get all users
-      users: async () => {
-          return User.find()
-          .select('-__v -password')
-          .populate('cards');
-      },
+    //get card by _id
+    card: async (parent, { _id }) => {
+        return Card.findOne({ _id });
+    },
 
-      // get a user by email
-      user: async (parent, { email }) => {
-          return User.findOne({ email })
-          .select('-__v -password')
-          .populate('cards');
-      },
+    // get all users
+    users: async () => {
+        return User.find()
+        .select('-__v -password')
+        .populate('cards');
+    },
+
+    // get a user by email
+    user: async (parent, { email }) => {
+        return User.findOne({ email })
+        .select('-__v -password')
+        .populate('cards');
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -94,7 +94,7 @@ const resolvers = {
     },
     editCard: async (parent, args, context) => {
       if (context.user) {
-        return await Card.findByIdAndUpdate({ _id: args._id},{cardTitle: args.cardTitle,cardSubject: args.cardSubject,cardBody: args.cardBody });
+        return await Card.findByIdAndUpdate({ _id: args._id},{cardSubject: args.cardSubject, cardTitle: args.cardTitle,cardBody: args.cardBody });
     
         // await User.findByIdAndUpdate(
         //   { _id: context.user._id },
@@ -115,7 +115,7 @@ const resolvers = {
       // if (context.user) {
       //   const updatedUser = await User.findOneAndRemove(
       //     { _id: context.user._id },
-      //     { $push: { cards: args._id } },
+      //     { $pull: { cards: args._id } },
       //     { new: true }
       //   );
 

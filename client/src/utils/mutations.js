@@ -38,11 +38,11 @@ export const ADD_CARD = gql`
 `;
 
 export const EDIT_CARD = gql`
-  mutation editCard($id: String!, $email: String!, $cardSubject: String!, $cardTitle: String!, $cardBody: String!) {
-    editCard(_id: $_id, cardTitle: $cardTitle, cardSubject: $cardSubject, cardBody: $cardBody) {
+  mutation editCard($_id: String!, $cardSubject: String!, $cardTitle: String!, $cardBody: String!) {
+    editCard(_id: $_id, cardSubject: $cardSubject, cardTitle: $cardTitle, cardBody: $cardBody) {
       _id
-      cardTitle
       cardSubject
+      cardTitle
       cardBody
     }
   }

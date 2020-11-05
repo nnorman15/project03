@@ -17,18 +17,20 @@ const CardList = ({ cards, cardSubjectFilter, title }) => {
     else {
         return <div className="pageMsg">Please login or signup!</div>;
     }
-    
+
+
     return (
         <div>
             <h3>{title}</h3>
             {cards && cards.map(card => (
                 <div key={card._id} className="card mb-3">
                     <p className="card-header">
-                        {card.cardTitle} <span className="card-date">{card.createdAt}</span>
+                        &nbsp;<span className="card-date">{card.createdAt}</span>
                     </p>
                     <div className="card-body">
                         <Link to={`/card-form/${card._id}`}>
-                            <p>{card.cardBody}</p>
+                            <p className="cardTitle">{card.cardTitle}</p>
+                            <p className="cardBody">{card.cardBody}</p>                            
                         </Link>
                     </div>
                 </div>

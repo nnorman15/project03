@@ -145,18 +145,23 @@ nav a:hover {
 /* CARDS */
 .card {
   margin: 0 0 20px 0;
-  border: 3px solid var(--dark);
+  border: 2px solid var(--dark);
   border-radius: var(--border-radius);
-  background-color: var(--tertiary);
+  background-color: white;
   color: var(--dark);
 }
 
 .card-header {
   color: var(--light);
   margin: 0;
-  background-color: var(--dark);
+  background-color: white;
   padding: 0.625rem;
   border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
+}
+
+.card-headerTitle{
+  padding: 0.625rem;
+  color: var(--dark);
 }
 
 .card-date {
@@ -167,6 +172,20 @@ nav a:hover {
 .card-body {
   padding: 2.5%;
   font-size: 1.4rem;
+  text-align: center;
+}
+
+.cardTitle {
+  font-size: 2rem;
+}
+
+.cardBody {
+  font-size: 1.4rem;
+  /* display: none; */
+}
+.cardIconToggleBody{
+  color: var(--dark);
+  cursor: pointer;
 }
 
 /* FORM */

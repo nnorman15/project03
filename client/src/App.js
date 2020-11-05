@@ -12,9 +12,10 @@ import Home from './pages/Home';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Login from './pages/Login';
-import NoMatch from './pages/NoMatch';
-import CardForm from './components/CardForm';
 import Signup from './pages/Signup';
+import CardForm from './components/CardForm';
+import NoMatch from './pages/NoMatch';
+
 
 const client = new ApolloClient({
   request: operation => {

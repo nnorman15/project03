@@ -48,11 +48,10 @@ const CardForm = props => {
           //console.log('EDIT CARD');
           await editCard({
             variables: { 
-              cardId: event.target.cardId.value,
+              _id: event.target.cardId.value,
               cardTitle: event.target.cardTitle.value, 
               cardBody: event.target.cardBody.value, 
-              cardSubject: event.target.cardSubject.value,
-              email: email
+              cardSubject: event.target.cardSubject.value
             }
           });
         }
@@ -97,7 +96,7 @@ const CardForm = props => {
   });
 
   //function that edits card to db via mutation
-  const [editCard, { editError }] = useMutation(EDIT_CARD, {
+  const [editCard] = useMutation(EDIT_CARD, {
     update(cache, { data: { editCard } }) {
       try {
 
@@ -106,7 +105,7 @@ const CardForm = props => {
 
         //once the card has been added, redirect to the card-form for that card (self)
         //window.location.href = "/card/" + addCard._id;
-        window.location.href = "/card-form/" + addCard._id;
+        window.location.href = "/card-form/" + editCard._id;
 
       } catch (e) {
         console.error(e);
@@ -129,6 +128,7 @@ const CardForm = props => {
           _id: cardId
         }
       });
+      window.location.href = "/";
     }
     catch (err) {
         console.error(err);
@@ -149,8 +149,10 @@ const CardForm = props => {
     card.cardSubject = '';
     card.cardTitle = '';
     card.cardBody = '';
-
-    //setCharacterCount(5);
+  }
+  else{
+    //console.log(card.cardBody.length);
+    //setCharacterCount(0);
   }
 
   if (loading) {
